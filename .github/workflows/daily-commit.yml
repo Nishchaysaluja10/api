@@ -1,0 +1,22 @@
+name: Auto Commit (24f2003882@ds.study.iitm.ac.in Schedule)
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # Once every day, 2:00 UTC
+  workflow_dispatch:
+
+jobs:
+  daily-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Make a daily commit by 24f2003882@ds.study.iitm.ac.in
+        run: |
+          echo "Automated daily commit by 24f2003882@ds.study.iitm.ac.in at $(date --utc)" >> daily-activity-log.txt
+          git config user.name "Auto Commit Bot"
+          git config user.email "24f2003882@ds.study.iitm.ac.in"
+          git add daily-activity-log.txt
+          git commit -m "Daily automated commit by 24f2003882@ds.study.iitm.ac.in [skip ci]" || echo "No changes to commit"
+          git push
